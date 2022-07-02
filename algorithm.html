@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="algorithm.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+    <title>Dijkstra’s Algorithm</title>
+  </head>
+  <header id="top">
+    <div class="heading">Solution using Dijkstra’s Algorithm</div>
+    <nav>
+      <div class="flexbox">
+        <a class="link" href="introduction.html">Introduction</a>
+        <a class="link" href="maths.html">Mathematical Problem</a>
+        <a class="active" href="#">Dijkstra’s Algorithm</a>
+        <a class="link" href="significance.html">Significance</a>
+        <a class="link" href="youtube.html">Youtube Video</a>
+      </div>
+    </nav>
+  </header>
+  <body>
+    <div class="border">
+      <h1>Dijkstra’s Algorithm</h1><br>
+      <p class="content">
+        Procedure:<br>
+        Dijkstra(G: weighted connected simple graph, with all weights
+        positive)<br>
+        G has vertices a = v0, v1, ..., an = z and length is w(vi, vj) where w(vi, vj)
+        = if(vi, vj) is not an edge in G for i = 1 to n<br>L(vi) = L(a) = 0 S =
+        the labels are now initialized so that the label of a is 0 and all other labels are infinity,
+        and S is the empty set while z is a vertex not in S with L(u) minimal S = SSu
+        for all vertices v not in S if <br>L(u) + w(u, v) < L(v)thenL(v) = L(u) + w(u, v)<br>
+        this adds a vertex to S with minimal label and updates the labels of vertices not in S.<br>
+        return L(z) (L(z) = length of a shortest path from a to z)
+      </p>
+    </div><br><br>
+    <div class="border">
+      <h1>How does Dijkstra’s Algorithm work?</h1><br>
+      <p class="content">
+        Dijkstra’s algorithm begins by labeling a with 0 and the other vertices
+        with . We use the notation L0(a) = 0 and L0(v) = for these labels before
+        any iterations have taken place (the subscript 0 stands for the “0th”
+        iteration). These labels are the lengths of shortest paths from a to the
+        vertices, where the paths contain only the vertex a. (Because no path
+        from a to a vertex different from a exists, is the length of the
+        shortest path between a and this vertex.) Dijkstra’s algorithm proceeds
+        by forming a distinguished set of vertices. Let Sk denote this set after
+        k iterations of the labeling procedure. We begin with S0 = . The set Sk
+        is formed from S(k 1) by adding a vertex u not in S(k 1) with the
+        smallest label. Once u is added to Sk, we update the labels of all
+        vertices not in Sk, so that Lk(v), the label of the vertex v at the kth
+        stage, is the length of the shortest path from a to v that contains
+        vertices only in Sk (that is, vertices that were already in the
+        distinguished set together with u). Note that the way we choose the
+        vertex u to add to Sk at each step is an optimal choice at each step,
+        making this a greedy algorithm. (We will prove shortly that this greedy
+        algorithm always produces an optimal solution.) Let v be a vertex not in
+        Sk. To update the label of v, note that Lk(v) is the length of the
+        shortest path from a to v containing only vertices in Sk. The updating
+        can be carried out efficiently when this observation is used: The
+        shortest path from a to v containing only elements of Sk is either the
+        shortest path from a to v that contains only elements of S(k 1) (that
+        is, the distinguished vertices not including u), or it is the shortest
+        path from a to u at the (k 1)st stage with the edge (u,v) added. In
+        other words, Lk(a,v) = min[Lk1(a,v),Lk1(a,u) + w(u,v)] where w(u,v) is
+        the length of the edge with u and v as endpoints. This procedure is
+        iterated by successively adding vertices to the distinguished set until
+        z is added. When z is added to the distinguished set, its label is the
+        length of the shortest path from a to z.
+      </p>
+    </div><br><br>
+    <div class="border">
+      <h1>Application of Dijkstra’s Algorithm</h1><br>
+      <p class="content">
+        <b>EXAMPLE:</b> Use Dijkstra’s algorithm to find the length of the shortest path
+        between the vertices a and z in the weighted graph displayed in Figure a.
+      </p>
+      <center>
+        <img class="image" src="Figa.jpg" alt="Figure (a)">
+        <h2>Figure (a)</h2>
+      </center><br>
+      <p class="content">
+        <b>Solution:</b> In figure (a) according to the algorithm first, we set a with 0 and all
+        other vertices with .L0(a) = 0 and L0(v) = . and first we set Sk = 0 Sk shows
+        the path after kth iteration. In the above example, we find the shortest path for
+        all vertices. And finally, we reach z. we do all this procedure by calculating the
+        distance.
+      </p>
+      <center>
+        <img class="image" src="Figb.jpg" alt="Figure (b)">
+        <h2>Figure (b)</h2>
+      </center><br>
+      <p class="content">
+        In figure (b) first we calculate the path for b and c from a.so we write (a) at
+        the b and c. this shows us from which path we reach those vertices. We also
+        store its distance there.
+      </p>
+      <center>
+        <img class="image" src="Figc.jpg" alt="Figure (c)">
+        <h2>Figure (c)</h2>
+      </center><br>
+      <p class="content">
+        In figure (c) we can see that for vertices b the other way is (a,c,b) and its
+        total distance is (2+1=3) is less than previous(4) so we replace its shortest path
+        by (a,c).and another way for c is (a,b,c) its total distance is (4+1=5) is greater
+        than 2 so we do not replace it by (a,b,c). hear we also store the path for d and e
+        from (a,c). hear we set the path for d and e from c because its distance is lesser
+        than b (2,3).
+      </p>
+      <center>
+        <img class="image" src="Figd.jpg" alt="Figure (d)">
+        <h2>Figure (d)</h2>
+      </center><br>
+      <p class="content">
+        In figure (d) then we consider another way for d from previous vertices b
+        (because we already calculated its distance from c)and if its distance is lesser
+        than c then we replace the path and distance for d.the shortest path and distance
+        for d is (a,c,b) and 8.
+      </p>
+      <center>
+        <img class="image" src="Fige.jpg" alt="Figure (e)">
+        <h2>Figure (e)</h2>
+      </center><br>
+      <p class="content">
+        In figure (e) the same things will be done with e. hear we also store the
+        shortest way for e.and then we calculate the way for z from d because its distance
+        is lesser than e (8¡10) and store it. the shortest path and distance for e are
+        (a,c,b,d) and 10.
+      </p>
+      <center>
+        <img class="image" src="Figf.jpg" alt="Figure (f)">
+        <h2>Figure (f)</h2>
+      </center><br>
+      <p class="content">
+        The same things will be done with z.and stored the shortest way in it. The shortest path and distance for e is (a,c,b,d,e) and 13.
+      </p>
+      <center>
+        <img class="image" src="Figg.jpg" alt="Figure (g)">
+        <h2>Figure (g)</h2>
+      </center><br>
+      <p class="content">
+        In figure g we can see the shortest path from a to z is (a,c,b,d,e) and the distance is 13.
+      </p>
+    </div><br>
+    <a class="button" id="button" href="#top"><span class="material-symbols-outlined">
+      arrow_circle_up
+      </span></a>
+  </body>
+</html>
