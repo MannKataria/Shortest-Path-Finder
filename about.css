@@ -60,4 +60,7 @@ table{
     .flexbox{
         flex-direction: column;
     }
+    table{
+        width: 100%;
+    }
 }
