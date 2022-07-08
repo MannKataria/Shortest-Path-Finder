@@ -57,11 +57,21 @@ header{
     border: solid 5px rgb(54, 198, 25);
 }
 .button{
-    color: rgb(54, 198, 25);
-    padding: 10px 16px;
-    border-radius: 36px;
-    margin-left: 49%;
+    display: flex;
+    justify-content: space-evenly;
     text-decoration: none;
+}
+.top{
+    color: rgb(54, 198, 25);
+    font-weight: bold;
+    border: solid 3px rgb(54, 198, 25);
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+.top:hover{
+    color: white;
+    background-color: rgb(54, 198, 25);
 }
 @media (max-width: 1300px) {
     .flexbox{
